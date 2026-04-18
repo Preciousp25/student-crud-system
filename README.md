@@ -63,7 +63,7 @@ http://localhost/phpmyadmin
 Create a database named:student_db
 
 
-📌 Step 2: Create Table
+ Step 2: Create Table
 
 Run the following SQL query inside the database:
 
@@ -74,7 +74,7 @@ CREATE TABLE students (
     course VARCHAR(100) NOT NULL
 );
 
-
+---
 ## Learning Objectives
 
 This project was developed to demonstrate:
