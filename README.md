@@ -50,6 +50,30 @@ This system follows a simple MVC-like structure to show separation of concerns
 - Separation of logic using OOP principles
 
 ---
+Database Setup
+
+This project requires a MySQL database to run correctly. Without this setup, the system will not function.
+
+ Step 1: Create Database
+
+Open phpMyAdmin:
+
+http://localhost/phpmyadmin
+
+Create a database named:student_db
+
+
+📌 Step 2: Create Table
+
+Run the following SQL query inside the database:
+
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fullname VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    course VARCHAR(100) NOT NULL
+);
+
 
 ## Learning Objectives
 
