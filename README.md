@@ -1,4 +1,4 @@
-# 🎓 Student CRUD System
+# Student CRUD System
 
 A simple, secure, and responsive **Student Management System** built using **pure PHP (OOP)** and **MySQL (PDO)**.  
 This project demonstrates CRUD operations, database interaction, and basic web security principles without using any frameworks.
