@@ -1,0 +1,217 @@
+
+/* GLOBAL RESET */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    margin: 0;
+    background: #f5f7fb;
+    color: #1f2937;
+    line-height: 1.5;
+}
+
+/* NAVBAR */
+.navbar {
+    background: #111827;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    color: white;
+}
+
+.navbar a {
+    color: #e5e7eb;
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.navbar a:hover {
+    color: #2563eb;
+}
+
+/* BANNER */
+.banner {
+    background: linear-gradient(135deg, #111827, #1f2937);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.banner h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.banner p {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #cbd5e1;
+}
+
+/* CONTAINER */
+.container {
+    padding: 25px;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-top: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+th {
+    background: #1f2937;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+tr:hover {
+    background: #f9fafb;
+}
+
+/* BUTTONS */
+
+/* PRIMARY ACTION (Add / Submit) */
+.add-btn,
+button {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.add-btn:hover,
+button:hover {
+    background: #1d4ed8;
+}
+
+/* BACK BUTTON */
+.back-btn {
+    display: inline-block;
+    background: #6b7280;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.2s ease;
+    opacity: 0.95;
+}
+
+.back-btn:hover {
+    background: #4b5563;
+    opacity: 1;
+}
+
+/* EDIT BUTTON */
+.edit {
+    background: #2563eb;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 5px;
+    transition: 0.2s;
+}
+
+.edit:hover {
+    background: #1d4ed8;
+}
+
+/* DELETE BUTTON */
+.delete {
+    background: #ef4444;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.delete:hover {
+    background: #dc2626;
+}
+
+/* FORM CARD */
+.form-container {
+    max-width: 500px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* FORM INPUTS */
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
+}
+
+/* FORM ACTIONS (BUTTON LAYOUT) */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navbar a {
+        display: block;
+        margin: 6px 0;
+    }
+
+    .banner h1 {
+        font-size: 22px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
