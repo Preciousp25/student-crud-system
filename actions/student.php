@@ -36,7 +36,7 @@ function isValidCsrfToken() {
 
 if ($action === 'create' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isValidCsrfToken()) {
-        redirectTo(withMessage('../add.php', 'Invalid request token. Please try again.'));
+        redirectTo(withMessage('../views/add.php', 'Invalid request token. Please try again.'));
     }
 
     $student = new \Student(
@@ -54,13 +54,13 @@ if ($action === 'create' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         redirectTo(withMessage('../index.php', 'Student added successfully.'));
     }
 
-    redirectTo(withMessage('../add.php', $controller->getLastError() ?: 'Failed to add student.'));
+    redirectTo(withMessage('../views/add.php', $controller->getLastError() ?: 'Failed to add student.'));
 }
 
 if ($action === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isValidCsrfToken()) {
         $failedId = isset($_POST['id']) ? (int) $_POST['id'] : 0;
-        redirectTo(withMessage('../edit.php?id=' . $failedId, 'Invalid request token. Please try again.'));
+        redirectTo(withMessage('../views/edit.php?id=' . $failedId, 'Invalid request token. Please try again.'));
     }
 
     $id = isset($_POST['id']) ? (int) $_POST['id'] : null;
@@ -80,7 +80,7 @@ if ($action === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         redirectTo(withMessage('../index.php', 'Student updated successfully.'));
     }
 
-    redirectTo(withMessage('../edit.php?id=' . (int) $id, $controller->getLastError() ?: 'Failed to update student.'));
+    redirectTo(withMessage('../views/edit.php?id=' . (int) $id, $controller->getLastError() ?: 'Failed to update student.'));
 }
 
 if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {

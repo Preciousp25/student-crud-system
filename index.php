@@ -36,7 +36,7 @@ $students = $controller->getAll();
         <div><strong>Student CRUD System</strong></div>
         <div>
             <a href="index.php">Home</a>
-            <a href="add.php">Add Student</a>
+            <a href="views/add.php">Add Student</a>
         </div>
     </div>
 
@@ -52,11 +52,12 @@ $students = $controller->getAll();
         <?php if ($message) { ?>
         <div class="alert alert-success" role="status" aria-live="polite">
             <span class="alert-message"><?= htmlspecialchars($message) ?></span>
-            <button type="button" class="alert-close" aria-label="Close message" onclick="this.parentElement.style.display='none';">&times;</button>
+            <button type="button" class="alert-close" aria-label="Close message"
+                onclick="this.parentElement.style.display='none';">&times;</button>
         </div>
         <?php } ?>
 
-        <a href="add.php" class="add-btn">Add Student</a>
+        <a href="views/add.php" class="add-btn">Add Student</a>
 
         <div class="table-container">
 
@@ -77,42 +78,42 @@ $students = $controller->getAll();
 
                 <tbody>
 
-                <?php if (count($students) > 0) { ?>
+                    <?php if (count($students) > 0) { ?>
 
-                <?php foreach ($students as $student) { ?>
-                <tr>
-                    <td><?= htmlspecialchars($student->getId()) ?></td>
-                    <td><?= htmlspecialchars($student->getFirstName()) ?></td>
-                    <td><?= htmlspecialchars($student->getLastName()) ?></td>
-                    <td><?= htmlspecialchars($student->getRegistrationNumber()) ?></td>
-                    <td><?= htmlspecialchars($student->getStudentNumber()) ?></td>
-                    <td><?= htmlspecialchars($student->getAge()) ?></td>
-                    <td><?= htmlspecialchars($student->getCgpa()) ?></td>
-                    <td class="actions-cell">
+                    <?php foreach ($students as $student) { ?>
+                    <tr>
+                        <td><?= htmlspecialchars($student->getId()) ?></td>
+                        <td><?= htmlspecialchars($student->getFirstName()) ?></td>
+                        <td><?= htmlspecialchars($student->getLastName()) ?></td>
+                        <td><?= htmlspecialchars($student->getRegistrationNumber()) ?></td>
+                        <td><?= htmlspecialchars($student->getStudentNumber()) ?></td>
+                        <td><?= htmlspecialchars($student->getAge()) ?></td>
+                        <td><?= htmlspecialchars($student->getCgpa()) ?></td>
+                        <td class="actions-cell">
 
-                        <a href="edit.php?id=<?= $student->getId() ?>" class="edit">Edit</a>
+                            <a href="views/edit.php?id=<?= $student->getId() ?>" class="edit">Edit</a>
 
-                        <form method="POST" action="actions/student.php?action=delete" style="display:inline;">
-                            <input type="hidden" name="id" value="<?= htmlspecialchars($student->getId()) ?>">
-                            <input type="hidden" name="csrf_token"
-                                value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
-                            <button type="submit" class="delete"
-                                onclick="return confirm('Are you sure you want to delete this student?')">Delete</button>
-                        </form>
+                            <form method="POST" action="actions/student.php?action=delete" style="display:inline;">
+                                <input type="hidden" name="id" value="<?= htmlspecialchars($student->getId()) ?>">
+                                <input type="hidden" name="csrf_token"
+                                    value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+                                <button type="submit" class="delete"
+                                    onclick="return confirm('Are you sure you want to delete this student?')">Delete</button>
+                            </form>
 
-                    </td>
-                </tr>
-                <?php } ?>
+                        </td>
+                    </tr>
+                    <?php } ?>
 
-                <?php } else { ?>
+                    <?php } else { ?>
 
-                <tr>
-                    <td colspan="8" style="text-align:center; padding:20px;">
-                        No students found.
-                    </td>
-                </tr>
+                    <tr>
+                        <td colspan="8" style="text-align:center; padding:20px;">
+                            No students found.
+                        </td>
+                    </tr>
 
-                <?php } ?>
+                    <?php } ?>
 
                 </tbody>
 
