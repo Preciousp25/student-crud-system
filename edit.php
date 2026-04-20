@@ -1,12 +1,19 @@
 <?php
+session_start();
 
 include "config/Database.php";
-include "classes/Student.php";
+require_once "controllers/studentController.php";
 
-$db = new Database();
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+$message = $_GET['message'] ?? null;
+
+$db = new \Database();
 $conn = $db->getConnection();
 
-$student = new Student($conn);
+$controller = new studentController($conn);
 
 $id = $_GET['id'] ?? null;
 
@@ -14,10 +21,10 @@ if (!$id) {
     die("Invalid request: No student ID provided.");
 }
 
-// Fetch student using OOP method (SoC improved)
-$row = $student->getById($id);
+// Fetch student through controller
+$student = $controller->get($id);
 
-if (!$row) {
+if (!$student) {
     die("Student not found.");
 }
 
@@ -27,7 +34,10 @@ if (!$row) {
 <html>
 <head>
     <title>Edit Student</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 
 <body>
@@ -54,37 +64,73 @@ if (!$row) {
 
         <h2>Edit Student</h2>
 
-        <form method="POST" action="actions/update.php">
+        <?php if ($message) { ?>
+            <div class="alert alert-error" role="alert">
+                <span class="alert-message"><?= htmlspecialchars($message) ?></span>
+                <button type="button" class="alert-close" aria-label="Close message" onclick="this.parentElement.style.display='none';">&times;</button>
+            </div>
+        <?php } ?>
 
-            <input type="hidden" name="id" value="<?= htmlspecialchars($row['id']) ?>">
+        <form method="POST" action="actions/student.php?action=update">
 
-            <!-- FULL NAME -->
-            <label for="fullname">Full Name</label>
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+            <input type="hidden" name="id" value="<?= htmlspecialchars($student->getId()) ?>">
+
+            <label for="first_name">First Name</label>
             <input 
                 type="text" 
-                id="fullname"
-                name="fullname" 
-                value="<?= htmlspecialchars($row['fullname']) ?>" 
+                id="first_name"
+                name="first_name" 
+                value="<?= htmlspecialchars($student->getFirstName()) ?>" 
                 required
             >
 
-            <!-- EMAIL -->
-            <label for="email">Email</label>
+            <label for="last_name">Last Name</label>
             <input 
-                type="email" 
-                id="email"
-                name="email" 
-                value="<?= htmlspecialchars($row['email']) ?>" 
+                type="text" 
+                id="last_name"
+                name="last_name" 
+                value="<?= htmlspecialchars($student->getLastName()) ?>" 
                 required
             >
 
-            <!-- COURSE -->
-            <label for="course">Course</label>
+            <label for="registration_number">Registration Number</label>
             <input 
                 type="text" 
-                id="course"
-                name="course" 
-                value="<?= htmlspecialchars($row['course']) ?>" 
+                id="registration_number"
+                name="registration_number" 
+                value="<?= htmlspecialchars($student->getRegistrationNumber()) ?>" 
+                required
+            >
+
+            <label for="student_number">Student Number</label>
+            <input 
+                type="text" 
+                id="student_number"
+                name="student_number" 
+                value="<?= htmlspecialchars($student->getStudentNumber()) ?>" 
+                required
+            >
+
+            <label for="age">Age</label>
+            <input 
+                type="number" 
+                id="age"
+                name="age" 
+                min="1"
+                value="<?= htmlspecialchars($student->getAge()) ?>" 
+                required
+            >
+
+            <label for="cgpa">CGPA</label>
+            <input 
+                type="number" 
+                id="cgpa"
+                name="cgpa" 
+                min="0"
+                max="4"
+                step="0.01"
+                value="<?= htmlspecialchars($student->getCgpa()) ?>" 
                 required
             >
 
