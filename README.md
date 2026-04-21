@@ -1,90 +1,58 @@
 # Student CRUD System
 
-A simple, secure, and responsive **Student Management System** built using **pure PHP (OOP)** and **MySQL (PDO)**.  
-This project demonstrates CRUD operations, database interaction, and basic web security principles without using any frameworks.
+Database-driven student management system built with pure PHP, MySQL, PDO, and Object-Oriented design.
 
----
+## Assignment Objective Coverage
 
-## Features
+- Applies PHP fundamentals through real request/response handling and server-side logic.
+- Implements full CRUD operations: create, read, update, delete.
+- Uses PDO prepared statements for secure DB interaction.
+- Follows Object-Oriented PHP with model/controller separation.
+- Handles form data with validation, sanitization, and safe output escaping.
 
-- Add new students
-- View all students
-- Edit student details
-- Delete student records
-- Secure database interactions using PDO (Prepared Statements)
-- Object-Oriented PHP (OOP) structure
-- Clean and responsive user interface
-- Lightweight system (no frameworks used)
+## Architecture
 
----
+- config/Database.php: PDO connection and automatic schema/bootstrap checks.
+- models/student.php: Student entity with getters/setters.
+- controllers/studentController.php: CRUD business logic, validation, duplicate checks.
+- actions/student.php: Unified HTTP endpoint for create/update/delete flows.
+- index.php: Tabular student listing and delete action.
+- add.php: Student creation form.
+- edit.php: Student update form.
 
-## Technologies Used
+## Data Model
 
-- PHP (OOP)
-- MySQL
-- PDO (Prepared Statements)
-- HTML5
-- CSS3
-- XAMPP (Local Server)
+Table: students
 
----
+- id (INT, PK, AUTO_INCREMENT)
+- first_name (VARCHAR(100), NOT NULL)
+- last_name (VARCHAR(100), NOT NULL)
+- registration_number (VARCHAR(100), NOT NULL, UNIQUE)
+- student_number (VARCHAR(100), NOT NULL, UNIQUE)
+- age (INT, NOT NULL)
+- cgpa (DECIMAL(3,2), NOT NULL)
+- created_at (TIMESTAMP, default CURRENT_TIMESTAMP)
 
-## Project Overview
+The app automatically creates the table and missing columns/indexes if needed.
 
-This system follows a simple MVC-like structure to show separation of concerns
+## Security and Integrity Practices
 
-- **config/** → Database connection
-- **classes/** → Core logic (Student class)
-- **actions/** → CRUD operations (Create, Update, Delete)
-- **index.php** → Display all students
-- **add.php** → Add new student form
-- **edit.php** → Update student data
+- PDO prepared statements for all SQL writes/reads.
+- Output escaping with htmlspecialchars() in views.
+- Server-side validation for required fields, age range, and CGPA range.
+- Data sanitization (trim/strip_tags) before persistence.
+- Duplicate prevention with controller checks and database unique indexes.
+- CSRF token verification for create/update/delete POST requests.
+- POST-Redirect-GET flow to reduce accidental resubmission on refresh.
 
----
+## Run Instructions
 
-##  Security Features
+1. Start Apache and MySQL in XAMPP.
+2. Create database named student_db.
+3. Place project in htdocs/student-crud-system.
+4. Open http://localhost/student-crud-system.
 
-- Uses **PDO prepared statements** to prevent SQL injection
-- Output sanitization using `htmlspecialchars()`
-- Basic input validation
-- Separation of logic using OOP principles
-
----
-Database Setup
-
-This project requires a MySQL database to run correctly. Without this setup, the system will not function.
-
- Step 1: Create Database
-
-Open phpMyAdmin:
-
-http://localhost/phpmyadmin
-
-Create a database named:student_db
-
-
- Step 2: Create Table
-
-Run the following SQL query inside the database:
-
-CREATE TABLE students (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    fullname VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    course VARCHAR(100) NOT NULL
-);
-
----
-## Learning Objectives
-
-This project was developed to demonstrate:
-
-- PHP CRUD operations
-- Object-Oriented Programming (OOP)
-- Database connectivity using PDO
-- Form handling in PHP
-- Basic web application architecture
-- Secure coding practices
+No external frameworks or libraries are required.
 
 
 
