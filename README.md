@@ -45,14 +45,21 @@ The app automatically creates the table and missing columns/indexes if needed.
 - CSRF token verification for create/update/delete POST requests.
 - POST-Redirect-GET flow to reduce accidental resubmission on refresh.
 
-## Run Instructions
+## Run Instructions (Podman on Fedora)
+
+1. From the project root, start the containers:
+   `podman compose up --build`
+2. Open `http://localhost:8080`.
+3. Stop containers with:
+   `podman compose down`
+
+The MySQL database (`student_db`) is created automatically by the database container, and the app auto-creates/updates the `students` table schema on startup.
+
+## Alternative Local Setup (XAMPP)
 
 1. Start Apache and MySQL in XAMPP.
 2. Create database named student_db.
 3. Place project in htdocs/student-crud-system.
 4. Open http://localhost/student-crud-system.
-
-No external frameworks or libraries are required.
-
 
 

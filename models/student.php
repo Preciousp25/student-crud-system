@@ -1,83 +1,98 @@
 <?php
 
-class Student {
-    private $id;
-    private $firstName;
-    private $lastName;
-    private $registrationNumber;
-    private $studentNumber;
-    private $age;
-    private $cgpa;
+class Student
+{
+  private ?int $id;
+  private ?string $firstName;
+  private ?string $lastName;
+  private ?string $registrationNumber;
+  private ?string $studentNumber;
+  private ?int $age;
+  private ?float $cgpa;
 
-    public function __construct(
-        $firstName = null,
-        $lastName = null,
-        $registrationNumber = null,
-        $studentNumber = null,
-        $age = null,
-        $cgpa = null
-    ) {
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->registrationNumber = $registrationNumber;
-        $this->studentNumber = $studentNumber;
-        $this->age = $age;
-        $this->cgpa = $cgpa;
-    }
+  public function __construct(
+    ?string $firstName = null,
+    ?string $lastName = null,
+    ?string $registrationNumber = null,
+    ?string $studentNumber = null,
+    ?int $age = null,
+    ?float $cgpa = null
+  ) {
+    $this->firstName = $firstName;
+    $this->lastName = $lastName;
+    $this->registrationNumber = $registrationNumber;
+    $this->studentNumber = $studentNumber;
+    $this->age = $age;
+    $this->cgpa = $cgpa;
+  }
 
-    public function getId() {
-        return $this->id;
-    }
+  public function getId(): ?int
+  {
+    return $this->id;
+  }
 
-    public function setId($id) {
-        $this->id = $id;
-    }
+  public function setId(int $id): void
+  {
+    $this->id = $id;
+  }
 
-    public function getFirstName() {
-        return $this->firstName;
-    }
+  public function getFirstName(): ?string
+  {
+    return $this->firstName;
+  }
 
-    public function setFirstName($firstName) {
-        $this->firstName = $firstName;
-    }
+  public function setFirstName(string $firstName): void
+  {
+    $this->firstName = $firstName;
+  }
 
-    public function getLastName() {
-        return $this->lastName;
-    }
+  public function getLastName(): ?string
+  {
+    return $this->lastName;
+  }
 
-    public function setLastName($lastName) {
-        $this->lastName = $lastName;
-    }
+  public function setLastName(string $lastName): void
+  {
+    $this->lastName = $lastName;
+  }
 
-    public function getRegistrationNumber() {
-        return $this->registrationNumber;
-    }
+  public function getRegistrationNumber(): ?string
+  {
+    return $this->registrationNumber;
+  }
 
-    public function setRegistrationNumber($registrationNumber) {
-        $this->registrationNumber = $registrationNumber;
-    }
+  public function setRegistrationNumber(string $registrationNumber): void
+  {
+    $this->registrationNumber = $registrationNumber;
+  }
 
-    public function getStudentNumber() {
-        return $this->studentNumber;
-    }
+  public function getStudentNumber(): ?string
+  {
+    return $this->studentNumber;
+  }
 
-    public function setStudentNumber($studentNumber) {
-        $this->studentNumber = $studentNumber;
-    }
+  public function setStudentNumber(string $studentNumber): void
+  {
+    $this->studentNumber = $studentNumber;
+  }
 
-    public function getAge() {
-        return $this->age;
-    }
+  public function getAge(): ?int
+  {
+    return $this->age;
+  }
 
-    public function setAge($age) {
-        $this->age = $age;
-    }
+  public function setAge(int $age): void
+  {
+    $this->age = $age;
+  }
 
-    public function getCgpa() {
-        return $this->cgpa;
-    }
+  public function getCgpa(): ?float
+  {
+    return $this->cgpa;
+  }
 
-    public function setCgpa($cgpa) {
-        $this->cgpa = $cgpa;
-    }
+  public function setCgpa(float $cgpa): void
+  {
+    $this->cgpa = $cgpa;
+  }
 }

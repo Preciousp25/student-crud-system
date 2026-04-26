@@ -1,18 +1,27 @@
 <?php
 
 class Database {
-    private $host = "localhost";
-    private $db_name = "student_db";
-    private $username = "root";
-    private $password = "";
+    private $host;
+    private $port;
+    private $db_name;
+    private $username;
+    private $password;
     public $conn;
+
+    public function __construct() {
+        $this->host = $this->envOrDefault('DB_HOST', 'localhost');
+        $this->port = $this->envOrDefault('DB_PORT', '3306');
+        $this->db_name = $this->envOrDefault('DB_NAME', 'student_db');
+        $this->username = $this->envOrDefault('DB_USER', 'root');
+        $this->password = $this->envOrDefault('DB_PASSWORD', '');
+    }
 
     public function getConnection() {
         $this->conn = null;
  
         try {
             $this->conn = new PDO(
-                "mysql:host=" . $this->host . ";dbname=" . $this->db_name . ";charset=utf8mb4",
+                "mysql:host=" . $this->host . ";port=" . $this->port . ";dbname=" . $this->db_name . ";charset=utf8mb4",
                 $this->username,
                 $this->password
             );
@@ -85,5 +94,10 @@ class Database {
         if ((int) $stmt->fetchColumn() === 0) {
             $this->conn->exec("CREATE UNIQUE INDEX " . $indexName . " ON " . $tableName . " (" . $columnName . ")");
         }
+    }
+
+    private function envOrDefault($key, $default) {
+        $value = getenv($key);
+        return ($value === false || $value === '') ? $default : $value;
     }
 }
